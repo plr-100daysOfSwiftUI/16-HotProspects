@@ -113,7 +113,7 @@ struct ProspectsView: View {
 											.default(Text("Name")) {
 												self.sortBy = .name
 											},
-											.default(Text("Date Created")) {
+											.default(Text("Most Recent")) {
 												self.sortBy = .dateCreated
 											}
 				])
