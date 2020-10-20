@@ -103,6 +103,16 @@ struct ProspectsView: View {
 			.sheet(isPresented: $isShowingScanner) {
 				CodeScannerView(codeTypes: [.qr], simulatedData: "Paul Richardson\npaul@photographerafoot.com", completion: self.handleScan)
 			}
+			.actionSheet(isPresented: $isShowingSorter) {
+				ActionSheet(title: Text("Sort prospects by:"), buttons: [
+											.default(Text("Name")) {
+												self.sortBy = .name
+											},
+											.default(Text("Date Created")) {
+												self.sortBy = .dateCreated
+											}
+				])
+			}
 		}
 		
 	}
