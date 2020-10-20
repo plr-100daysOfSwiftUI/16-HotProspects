@@ -90,11 +90,14 @@ struct ProspectsView: View {
 				}
 			}
 			.navigationBarTitle(title)
-			.navigationBarItems(trailing: Button(action: {
-				//					let prospect = Prospect()
-				//					prospect.name = "Paul Richardson"
-				//					prospect.emailAddress = "paul@photographerafoot.com"
-				//					self.prospects.people.append(prospect)
+			.navigationBarItems(
+				leading: Button(action: {
+					self.isShowingSorter = true
+				}) {
+					Image(systemName: "arrow.up.arrow.down")
+					Text("Sort")
+				},
+				trailing: Button(action: {
 				self.isShowingScanner = true
 			}) {
 				Image(systemName: "qrcode.viewfinder")
