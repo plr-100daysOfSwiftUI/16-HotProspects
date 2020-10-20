@@ -21,6 +21,7 @@ struct ProspectsView: View {
 	
 	@EnvironmentObject var prospects: Prospects
 	@State private var isShowingScanner = false
+	@State private var isShowingSorter = false
 	@State private var sortBy = SortType.name
 	
 	
