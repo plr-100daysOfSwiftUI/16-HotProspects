@@ -20,19 +20,19 @@ struct ContentView: View {
 	var body: some View {
 		TabView {
 			
-			ProspectsView(filter: .none)
+			ProspectsView(filter: .none, sortBy: $sortBy)
 				.tabItem {
 					Image(systemName: "person.3")
 					Text("Everyone")
 				}
 
-			ProspectsView(filter: .contacted)
+			ProspectsView(filter: .contacted, sortBy: $sortBy)
 				.tabItem {
 					Image(systemName: "checkmark.circle")
 					Text("Contacted")
 				}
 
-			ProspectsView(filter: .uncontacted)
+			ProspectsView(filter: .uncontacted, sortBy: $sortBy)
 				.tabItem {
 					Image(systemName: "questionmark.diamond")
 					Text("Uncontacted")
