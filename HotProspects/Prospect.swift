@@ -53,13 +53,13 @@ class Prospects: ObservableObject {
 		save()
 	}
 	
-	private func getDocumentsDirectory() -> URL {
+	private  static func getDocumentsDirectory() -> URL {
 		let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
 		return paths[0]
 	}
 	
-	private func getProspectsURL() -> URL {
+	private static func getProspectsURL() -> URL {
 		let documentName = "prospects.json"
-		return getDocumentsDirectory().appendingPathComponent(documentName)
+		return Prospects.getDocumentsDirectory().appendingPathComponent(documentName)
 	}
 }
