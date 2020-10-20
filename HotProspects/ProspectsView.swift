@@ -69,6 +69,8 @@ struct ProspectsView: View {
 								.font(.headline)
 							Text(prospect.emailAddress)
 								.foregroundColor(.secondary)
+							Text(prospect.formattedCreationDate)
+								.foregroundColor(.secondary)
 						}
 						if filter == .none {
 							Spacer()
