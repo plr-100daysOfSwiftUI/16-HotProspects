@@ -10,6 +10,7 @@ import SwiftUI
 class Prospect: Identifiable, Codable, Comparable {
 		
 	var id = UUID()
+	var dateCreated = Date()
 	var name = "Anonymous"
 	var emailAddress = ""
 	fileprivate(set) var isContacted = false
