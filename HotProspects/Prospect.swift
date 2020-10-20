@@ -14,6 +14,13 @@ class Prospect: Identifiable, Codable, Comparable {
 	var name = "Anonymous"
 	var emailAddress = ""
 	fileprivate(set) var isContacted = false
+	
+	var formattedCreationDate: String {
+		let formatter = DateFormatter()
+		formatter.dateStyle = .long
+		formatter.timeStyle = .short
+		return formatter.string(from: dateCreated)
+	}
 
 	static func < (lhs: Prospect, rhs: Prospect) -> Bool {
 		lhs.name < rhs.name
