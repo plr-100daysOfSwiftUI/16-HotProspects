@@ -10,11 +10,11 @@ import CodeScanner
 import UserNotifications
 
 struct ProspectsView: View {
-
+	
 	enum FilterType {
 		case none, contacted, uncontacted
 	}
-
+	
 	@EnvironmentObject var prospects: Prospects
 	@State private var isShowingScanner = false
 	
@@ -47,11 +47,18 @@ struct ProspectsView: View {
 		NavigationView {
 			List {
 				ForEach(filteredProspects) { prospect in
-					VStack(alignment: .leading) {
-						Text(prospect.name)
-							.font(.headline)
-						Text(prospect.emailAddress)
-							.foregroundColor(.secondary)
+					HStack {
+						VStack(alignment: .leading) {
+							Text(prospect.name)
+								.font(.headline)
+							Text(prospect.emailAddress)
+								.foregroundColor(.secondary)
+						}
+						if filter == .none {
+							Spacer()
+							Image(systemName: prospect.isContacted ? "hand.thumbsup.fill" : "hand.thumbsdown.fill")
+								.padding(.trailing)
+						}
 					}
 					.contextMenu {
 						Button(prospect.isContacted ? "Mark Uncontacted" : " Mark Contacted") {
@@ -66,17 +73,17 @@ struct ProspectsView: View {
 					
 				}
 			}
-				.navigationBarTitle(title)
-				.navigationBarItems(trailing: Button(action: {
-//					let prospect = Prospect()
-//					prospect.name = "Paul Richardson"
-//					prospect.emailAddress = "paul@photographerafoot.com"
-//					self.prospects.people.append(prospect)
-					self.isShowingScanner = true
-				}) {
-					Image(systemName: "qrcode.viewfinder")
-					Text("Scan")
-				})
+			.navigationBarTitle(title)
+			.navigationBarItems(trailing: Button(action: {
+				//					let prospect = Prospect()
+				//					prospect.name = "Paul Richardson"
+				//					prospect.emailAddress = "paul@photographerafoot.com"
+				//					self.prospects.people.append(prospect)
+				self.isShowingScanner = true
+			}) {
+				Image(systemName: "qrcode.viewfinder")
+				Text("Scan")
+			})
 			.sheet(isPresented: $isShowingScanner) {
 				CodeScannerView(codeTypes: [.qr], simulatedData: "Paul Richardson\npaul@photographerafoot.com", completion: self.handleScan)
 			}
@@ -110,14 +117,14 @@ struct ProspectsView: View {
 			content.subtitle = prospect.emailAddress
 			content.sound = UNNotificationSound.default
 			
-//			var dateComponents = DateComponents()
-//			dateComponents.hour = 9
-//			let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+			//			var dateComponents = DateComponents()
+			//			dateComponents.hour = 9
+			//			let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
 			let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
 			
 			let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
 			center.add(request)
-			}
+		}
 		
 		center.getNotificationSettings { settings in
 			if settings.authorizationStatus == .authorized {
