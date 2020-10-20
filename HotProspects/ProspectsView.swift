@@ -15,8 +15,14 @@ struct ProspectsView: View {
 		case none, contacted, uncontacted
 	}
 	
+	enum SortType {
+		case name, dateCreated
+	}
+	
 	@EnvironmentObject var prospects: Prospects
 	@State private var isShowingScanner = false
+	@State private var sortBy = SortType.name
+	
 	
 	let filter: FilterType
 	
