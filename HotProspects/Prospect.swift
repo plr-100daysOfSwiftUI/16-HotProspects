@@ -39,7 +39,7 @@ class Prospects: ObservableObject {
 	private func save() {
 		if let encoded = try? JSONEncoder().encode(people) {
 			do {
-				try encoded.write(to: getProspectsURL(), options: [.atomic])
+				try encoded.write(to: Prospects.getProspectsURL(), options: [.atomic])
 			} catch {
 				print(error.localizedDescription)
 			}
