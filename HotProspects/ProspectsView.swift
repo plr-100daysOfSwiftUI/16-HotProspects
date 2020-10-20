@@ -18,12 +18,9 @@ struct ProspectsView: View {
 	@EnvironmentObject var prospects: Prospects
 	@State private var isShowingScanner = false
 	@State private var isShowingSorter = false
-	/*
-	TODO: sortBy is local to the instance of ProspectsView. Move it to the environment so that it is shared by all instances
-	*/
-	
 	
 	let filter: FilterType
+	@Binding var sortBy: SortType
 	
 	var title: String {
 		switch filter {
@@ -175,6 +172,6 @@ struct ProspectsView: View {
 
 struct ProspectsView_Previews: PreviewProvider {
 	static var previews: some View {
-		ProspectsView(filter: .none)
+		ProspectsView(filter: .none, sortBy: .constant(SortType.name))
 	}
 }
