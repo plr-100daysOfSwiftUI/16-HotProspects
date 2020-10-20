@@ -7,11 +7,21 @@
 
 import SwiftUI
 
-class Prospect: Identifiable, Codable {
+class Prospect: Identifiable, Codable, Comparable {
+		
 	var id = UUID()
 	var name = "Anonymous"
 	var emailAddress = ""
 	fileprivate(set) var isContacted = false
+
+	static func < (lhs: Prospect, rhs: Prospect) -> Bool {
+		lhs.name < rhs.name
+	}
+
+	static func == (lhs: Prospect, rhs: Prospect) -> Bool {
+		lhs.name == rhs.name
+	}
+	
 }
 
 class Prospects: ObservableObject {
