@@ -7,8 +7,14 @@
 
 import SwiftUI
 
+enum SortType {
+	case name, dateCreated
+}
+
 struct ContentView: View {
-	
+		
+	@State private var sortBy = SortType.name
+
 	var prospects = Prospects()
 	
 	var body: some View {
