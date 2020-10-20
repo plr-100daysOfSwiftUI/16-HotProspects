@@ -40,7 +40,7 @@ class Prospects: ObservableObject {
 		if let encoded = try? JSONEncoder().encode(people) {
 			UserDefaults.standard.set(encoded, forKey: Self.saveKey)
 		} else {
-			print("Error saving data")
+			print("Error encoding data")
 		}
 	}
 	
