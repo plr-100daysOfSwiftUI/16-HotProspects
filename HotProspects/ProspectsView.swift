@@ -46,7 +46,7 @@ struct ProspectsView: View {
 		
 		NavigationView {
 			List {
-				ForEach(filteredProspects) { prospect in
+				ForEach(filteredProspects.sorted()) { prospect in
 					HStack {
 						VStack(alignment: .leading) {
 							Text(prospect.name)
