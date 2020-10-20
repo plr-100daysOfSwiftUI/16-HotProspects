@@ -20,7 +20,7 @@ class Prospects: ObservableObject {
 	static let saveKey = "SavedData"
 	
 	init() {
-		if let data = UserDefaults.standard.data(forKey: Self.saveKey) {
+		if let data = try? Data(contentsOf: Prospects.getProspectsURL()) {
 			if let decoded = try? JSONDecoder().decode([Prospect].self, from: data) {
 				self.people = decoded
 				return
