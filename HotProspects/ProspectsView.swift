@@ -48,11 +48,20 @@ struct ProspectsView: View {
 		}
 	}
 	
+	var sortedProspects: [Prospect] {
+		switch sortBy {
+		case .dateCreated:
+			return filteredProspects.sorted { $0.dateCreated > $1.dateCreated }
+		default:
+			return filteredProspects.sorted()
+		}
+	}
+	
 	var body: some View {
 		
 		NavigationView {
 			List {
-				ForEach(filteredProspects.sorted()) { prospect in
+				ForEach(sortedProspects) { prospect in
 					HStack {
 						VStack(alignment: .leading) {
 							Text(prospect.name)
