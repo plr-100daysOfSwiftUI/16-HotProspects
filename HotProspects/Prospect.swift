@@ -54,4 +54,8 @@ class Prospects: ObservableObject {
 		return paths[0]
 	}
 	
+	private func getProspectsURL() -> URL {
+		let documentName = "prospects.json"
+		return getDocumentsDirectory().appendingPathComponent(documentName)
+	}
 }
